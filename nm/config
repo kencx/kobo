@@ -1,0 +1,11 @@
+menu_item :main :Reboot          :cmd_spawn       :quiet :reboot
+menu_item :main :IP Address      :cmd_output      :500:/sbin/ifconfig | /usr/bin/awk '/inet addr/{print substr($2,6)}'
+menu_item :main :Kernel Version  :cmd_output      :500:uname -a
+menu_item :main :Memory          :cmd_output      :500:free -m
+menu_item :main :Dump Syslog     :cmd_spawn       :logread > /mnt/onboard/.adds/syslog.log
+menu_item :main :Force WiFi On   :nickel_setting  :toggle:force_wifi
+  chain_success :nickel_wifi :tog
+menu_item :main :Auto USB        :nickel_setting  :toggle:auto_usb_gadget
+menu_item :main :Dropbear        :cmd_output      :500:ps ax | grep dropbear
+menu_item :main :Rescan          :nickel_misc     :rescan_books
+menu_item :main :Import books    :nickel_misc     :rescan_books_full

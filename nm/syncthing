@@ -1,0 +1,11 @@
+menu_item :main :Start Syncthing :cmd_spawn :quiet :exec /mnt/onboard/.adds/scripts/syncthing-stop.sh
+  chain_always  :nickel_setting :enable :force_wifi
+  chain_always  :nickel_wifi :enable 
+  chain_always  :nickel_wifi :autoconnect_silent
+  chain_always  :cmd_spawn   :quiet :exec /mnt/onboard/.adds/scripts/syncthing-start.sh
+  chain_success :dbg_toast :Started Syncthing
+menu_item :main :Stop Syncthing  :cmd_spawn :quiet :exec /mnt/onboard/.adds/scripts/syncthing-stop.sh
+  chain_always  :nickel_setting :disable :force_wifi
+  chain_always  :nickel_wifi :disable
+  chain_always  :nickel_misc :rescan_books
+  chain_success :dbg_toast :Stopped Syncthing
